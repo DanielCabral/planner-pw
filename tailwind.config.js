@@ -18,13 +18,14 @@ module.exports = {
           'success': '#62DF4D',
           'link': '#3DADFF',
           'back-dark':'#F5F5F5',
+          'stroke': '#989898',
+          'gray': '#292929',
+          'new-planner': '#FEF6F8'
         }
     },
   },
   variants: {
-    extend: {
-      border: ['hover'],
-    },
+      border: ['hover', 'focus', 'group-focus'],
   },
   plugins: [],
 }

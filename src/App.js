@@ -4,6 +4,7 @@ import Landing from './pages/home';
 import Login from './pages/login';
 import Planners from './pages/planners';
 import PlannerModel from './pages/PlannerModel';
+import EditPlanner from './pages/EditPlanner';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/planners" component={Planners} />
             <Route exact path="/new-planner" component={PlannerModel} />
+            <Route exact path="/edit-planner" component={EditPlanner} />
         </Switch>
   );
 }

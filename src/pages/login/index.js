@@ -7,32 +7,37 @@ import {Link} from 'react-router-dom';
 
 export default function Login() {
     return (
-       <div className='w-full h-screen'>         
+       <div className='w-full'>         
           <Header />
           <div className='flex flex-row'>
-              <div className='mt-36 w-full h-auto flex flex-col justify-start items-center'>
-               <form className='px-20 py-12 shadow-lg border rounded-xl flex flex-col items-center justify-center'>
-                   <p className='text-3xl leading-normal font-serif mb-4'>Login</p>
-                   <div  className='flex flex-row items-end'>
-                    <img src={User} alt='' className='h-6 w-6'/>
-                        <div className='ml-3 flex flex-col'>                        
-                            <p className='text-sm text-bold'>E-mail</p>
-                            <input className='border-2 shadow-inner border-secondary rounded' type='text'/>
+              <div className='mt-12 mb-14 w-full flex flex-col flex-grow justify-start items-center'>
+               <form className='px-20 py-12 h-96 shadow-lg shadow-x rounded-xl flex flex-col items-center justify-start'>
+                   <p className='text-lg leading-normal mt-4'>Login</p>
+                   <div className='mt-4'>
+                   <div  className='flex flex-col'>                
+                   <p className='text-sm text-bold'>E-mail</p>
+                        <div className='group mb-3 flex flex-row items-center border-2 shadow-inner border-stroke focus:border-secondary rounded-lg'>                        
+                            <img src={User} alt='' className='h-5 w-5 relative'/>
+                            <input className='h-8 outline-none focus:outline-none group-focus:border-secondary' type='text'/>
                         </div>
                    </div>
-                   <div  className='flex flex-row items-end'>
-                    <img src={Lock} alt='' className='h-6 w-6'/>
-                        <div className='ml-3 flex flex-col'>                        
-                            <p className='text-sm text-bold'>Senha</p>
-                            <input className='border-2 border-secondary shadow-inner rounded' type='password'/>
+
+                   <div  className='flex flex-col'>                
+                   <p className='text-sm text-bold'>Senha</p>
+                        <div className='group mb-3 flex flex-row items-center border-2 shadow-inner border-stroke focus:border-secondary rounded-lg'>                        
+                            <img src={Lock} alt='' className='h-5 w-5 relative'/>
+                            <input className='h-8 outline-none focus:outline-none group-focus:border-secondary' type='password'/>
                         </div>
                    </div>
-                   <Link className='w-full mt-6 px-6 py-1 bg-secondary text-white rounded-lg text-center' to='planners'>Entrar</Link>
+                   </div>
+                   <Link className='w-full mt-1 underline text-sm text-left text-gray' to='planners'>Esqueceu a senha</Link>
+                   <Link className='w-full mt-3 px-6 py-2 bg-secondary text-white rounded-lg text-center' to='planners'>Entrar</Link>
+                   <p className='mt-6 text-sm cursor-pointer ::before'>Ainda não tem conta?</p> <a href="/home" className='text-secondary underline'>Registre-se</a>           
                </form>
-               <a href="/home" className='mt-3 text-sm cursor-pointer'>Ainda Não tenho conta</a>
               </div>
-              <div className='w-full flex flex-col justify-center items-center mr-24'>
-                <img className='h-128 w-128' src={Paper} alt='Stay Home'/>            
+              <div className='mt-12 w-full flex flex-col justify-center items-center mr-24'>
+                  <p className='font-serif text-primary text-7xl -mb-8'>Planner</p>
+                <img className='h-128 w-128 transform scale-75' src={Paper} alt='Stay Home'/>            
               </div>
           </div>
        </div>
