@@ -49,18 +49,18 @@ export default function Home() {
               <div className='mt-36 w-full h-auto flex flex-col justify-start items-center'>
                 <p className='text-7xl text-center'>Organize sua vida com o Planner!</p>
                 <p className='mt-6 text-4xl text-center'>Facilite seu trabalho utilizando a ferramenta para:</p>
-                <div>
+                <div className='flex flex-col items-start'>
                     <div className='flex flex-row justify-center items-center'>
                     <img src={Check} alt=''/>
                     <p className='ml-4 text-primary'>Finanças</p>
                     </div>
                     <div className='flex flex-row justify-center items-center'>
                     <img src={Check} alt=''/>
-                    <p className='ml-4 text-primary'>Finanças</p>
+                    <p className='ml-4 text-primary'>Academia</p>
                     </div>
                     <div className='flex flex-row justify-center items-center'>
                     <img src={Check} alt=''/>
-                    <p className='ml-4 text-primary'>Finanças</p>
+                    <p className='ml-4 text-primary'>Dentre outros</p>
                     </div>
                 </div>
               </div>
