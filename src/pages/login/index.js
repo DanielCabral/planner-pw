@@ -29,7 +29,7 @@ export default function Login() {
                    </div>
                    <Link className='w-full mt-6 px-6 py-1 bg-secondary text-white rounded-lg text-center' to='planners'>Entrar</Link>
                </form>
-               <a href="#" className='mt-3 text-sm cursor-pointer'>Ainda Não tenho conta</a>
+               <a href="/home" className='mt-3 text-sm cursor-pointer'>Ainda Não tenho conta</a>
               </div>
               <div className='w-full flex flex-col justify-center items-center mr-24'>
                 <img className='h-128 w-128' src={Paper} alt='Stay Home'/>            

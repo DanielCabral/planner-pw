@@ -1,6 +1,4 @@
 import {Link} from 'react-router-dom'
-import StayHome from '../../assets/stay-home.png'
-import Check from '../../assets/check.png'
 import Header from '../../components/header';
 
 export default function Planners() {
