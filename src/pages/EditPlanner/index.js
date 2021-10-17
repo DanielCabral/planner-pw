@@ -35,7 +35,7 @@ export default function EditPlanner() {
        <div className='w-full h-screen'>        
           <Header />
 
-          <div className='mt-10 w-full grid gap-4 grid-cols-3 place-items-center'>           
+          <div className='mt-10 w-full grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center'>           
            {col()}
            {col()}
            {col()}

@@ -10,8 +10,8 @@ export default function Login() {
        <div className='w-full'>         
           <Header />
           <div className='flex flex-row'>
-              <div className='mt-12 mb-14 w-full flex flex-col flex-grow justify-start items-center'>
-               <form className='px-20 py-12 h-96 shadow-lg shadow-x rounded-xl flex flex-col items-center justify-start'>
+              <div className='mt-8 lg:mt-12 lg:mb-14 w-full flex flex-col flex-grow justify-start items-center'>
+               <form className='px-2 lg:px-20 py-2 lg:py-12 h-96 lg:shadow-lg shadow-x rounded-xl flex flex-col items-center justify-start'>
                    <p className='text-lg leading-normal mt-4'>Login</p>
                    <div className='mt-4'>
                    <div  className='flex flex-col'>                
@@ -35,7 +35,7 @@ export default function Login() {
                    <p className='mt-6 text-sm cursor-pointer ::before'>Ainda não tem conta?</p> <a href="/home" className='text-secondary underline'>Registre-se</a>           
                </form>
               </div>
-              <div className='mt-12 w-full flex flex-col justify-center items-center mr-24'>
+              <div className='hidden lg:block mt-12 w-full flex flex-col justify-center items-center mr-24'>
                   <p className='font-serif text-primary text-7xl -mb-8'>Planner</p>
                 <img className='h-128 w-128 transform scale-75' src={Paper} alt='Stay Home'/>            
               </div>

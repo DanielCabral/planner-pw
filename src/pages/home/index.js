@@ -1,4 +1,5 @@
 import StayHome from '../../assets/stay-home.png'
+import {Link} from 'react-router-dom'
 import Check from '../../assets/check.png'
 import Header from '../../components/header';
 
@@ -27,14 +28,14 @@ export default function Home() {
               </div>
               <div className='mt-4 lg:mt-8 lg:w-1/3 flex flex-col justify-center items-end'>
                 <img className='w-64 h-64 mx-auto hidden lg:block' src={StayHome} alt='Stay Home'/>
-                <button className='mt-2 lg:mt-7 w-full h-12 lg:h-14 text-2xl text-white bg-secondary rounded-lg shadow-lg'>Experimente Já!</button>
+                <Link to='/login' className='mt-2 lg:mt-7 w-full h-12 lg:h-14 text-2xl text-white bg-secondary rounded-lg shadow-lg flex justify-center items-center'>Experimente Já!</Link>
                 <div className='w-full py-1 flex justify-center'>
                     <p className='text-secondary text-lg'>Ou</p>
                 </div>
-                <button className='w-full h-12 lg:h-14 text-2xl text-secondary bg-white border-2 border-secondary rounded-lg shadow-lg'>Registre-se</button>
+                <a href='/login' className='w-full h-12 lg:h-14 text-2xl text-secondary bg-white border-2 border-secondary rounded-lg shadow-lg  flex justify-center items-center'>Registre-se</a>
                 <div className='w-full block lg:hidden'>
                     <p className='mt-2 text-center text-lg'>Já possui conta?</p>
-                    <button className='mt-2 w-full h-12 lg:h-14 text-2xl text-white bg-secondary rounded-lg shadow-lg'>Login</button>
+                    <a href='/login'  className='mt-2 w-full h-12 lg:h-14 text-2xl text-white bg-secondary rounded-lg shadow-lg  flex justify-center items-center'>Login</a>
                 </div>
               </div>
           </div>

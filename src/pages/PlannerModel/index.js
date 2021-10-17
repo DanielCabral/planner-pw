@@ -10,9 +10,9 @@ export default function PlannerModel() {
        <div className='w-full h-screen'>        
           <Header />
 
-          <div className='pt-10 px-56'>
+          <div className='pt-4 px-2 lg:pt-10 lg:px-56'>
             <p className='text-4xl text-center mb-8'>Selecione um modelo abaixo e descubra um novo mundo</p>
-            <div className='flex flex-row justify-between items-center'>
+            <div className='flex flex-col lg:flex-row justify-between items-center'>
                 <div>
                     <Link to='edit-planner' className='cursor-pointer'>
                             <div className="w-56 h-56 p-8 border border-secondary rounded-full ">
