@@ -32,10 +32,10 @@ export default function Home() {
                 <div className='w-full py-1 flex justify-center'>
                     <p className='text-secondary text-lg'>Ou</p>
                 </div>
-                <a href='/login' className='w-full h-12 lg:h-14 text-2xl text-secondary bg-white border-2 border-secondary rounded-lg shadow-lg  flex justify-center items-center'>Registre-se</a>
+                <Link to='/login' className='w-full h-12 lg:h-14 text-2xl text-secondary bg-white border-2 border-secondary rounded-lg shadow-lg  flex justify-center items-center'>Registre-se</Link>
                 <div className='w-full block lg:hidden'>
                     <p className='mt-2 text-center text-lg'>Já possui conta?</p>
-                    <a href='/login'  className='mt-2 w-full h-12 lg:h-14 text-2xl text-white bg-secondary rounded-lg shadow-lg  flex justify-center items-center'>Login</a>
+                    <Link to='/login' className='mt-2 w-full h-12 lg:h-14 text-2xl text-white bg-secondary rounded-lg shadow-lg  flex justify-center items-center'>Login</Link>
                 </div>
               </div>
           </div>
