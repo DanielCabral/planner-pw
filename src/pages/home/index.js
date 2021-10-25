@@ -1,12 +1,10 @@
 import StayHome from '../../assets/stay-home.png'
 import {Link} from 'react-router-dom'
 import Check from '../../assets/check.png'
-import Header from '../../components/header';
 
 export default function Home() {
     return (
        <div className='w-full h-screen'>       
-          <Header />
           <div className='flex flex-col lg:flex-row mx-8 lg:mx-28 my-2'>
               <div className='mt-2 lg:mt-8 lg:mr-16 lg:w-2/3 h-auto flex flex-col justify-center items-center'>
                 <p className='w-full text-3xl lg:text-6xl text-center lg:text-left'>Organize sua vida com o Planner!</p>
@@ -28,7 +26,7 @@ export default function Home() {
               </div>
               <div className='mt-4 lg:mt-8 lg:w-1/3 flex flex-col justify-center items-end'>
                 <img className='w-64 h-64 mx-auto hidden lg:block' src={StayHome} alt='Stay Home'/>
-                <Link to='/login' className='mt-2 lg:mt-7 w-full h-12 lg:h-14 text-2xl text-white bg-secondary rounded-lg shadow-lg flex justify-center items-center'>Experimente Já!</Link>
+                <Link to='/pricing' className='mt-2 lg:mt-7 w-full h-12 lg:h-14 text-2xl text-white bg-secondary rounded-lg shadow-lg flex justify-center items-center'>Experimente Já!</Link>
                 <div className='w-full py-1 flex justify-center'>
                     <p className='text-secondary text-lg'>Ou</p>
                 </div>

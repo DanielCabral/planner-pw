@@ -1,14 +1,12 @@
 import Paper from '../../assets/paper.png'
 import Lock from '../../assets/lock.png'
 import User from '../../assets/user.png'
-import Header from '../../components/header';
 
 import {Link} from 'react-router-dom';
 
 export default function Login() {
     return (
        <div className='w-full'>         
-          <Header />
           <div className='flex flex-row'>
               <div className='mt-8 lg:mt-12 lg:mb-14 w-full flex flex-col flex-grow justify-start items-center'>
                <form className='px-2 lg:px-20 py-2 lg:py-12 h-96 lg:shadow-lg shadow-x rounded-xl flex flex-col items-center justify-start'>

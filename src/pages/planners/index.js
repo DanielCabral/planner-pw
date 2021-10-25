@@ -1,7 +1,5 @@
 import {Link} from 'react-router-dom'
 import {FiPlus, FiMoreVertical} from 'react-icons/fi'
-import Header from '../../components/header';
-
 export default function Planners() {
     const planners = [
         {
@@ -30,7 +28,6 @@ export default function Planners() {
 
     return (
        <div className='w-full h-screen'>        
-          <Header />
           <div className='pt-2 lg:pt-20 px-2 lg:px-20'>
               <div className='w-full flex flex-col lg:flex-row justify-between items-center'>
                   <p className='font-bold text-2xl'>Seus Planners</p>
