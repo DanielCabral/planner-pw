@@ -1,0 +1,4 @@
+.card {
+    @apply p-6 rounded-lg bg-back-dark shadow-lg;
+    width: 350px;
+}
