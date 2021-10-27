@@ -2,7 +2,7 @@
   --gray: #eeeeee;
 }
 .btn-secondary {
-  @apply bg-secondary p-2 rounded-md text-white text-center mt-2 transition-colors hover:bg-secondary-dark
+  @apply bg-secondary p-2 rounded-md text-white text-center m-2 transition-colors hover:bg-secondary-dark
 }
 .App {
   text-align: center;

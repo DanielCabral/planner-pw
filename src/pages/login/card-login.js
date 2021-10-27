@@ -2,7 +2,8 @@ import Lock from '../../assets/lock.png'
 import User from '../../assets/user.png'
 
 import { Link } from 'react-router-dom';
-import './style.css'
+import './style.css';
+
 export function CardLogin() {
     return (
         <div className='card'>
