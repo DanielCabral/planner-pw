@@ -4,6 +4,15 @@
 .btn-secondary {
   @apply bg-secondary p-2 rounded-md text-white text-center m-2 transition-colors hover:bg-secondary-dark
 }
+.btn-secondary-outlined {
+  @apply border-2 border-secondary p-2 rounded-md text-center m-2 transition-colors hover:bg-back-dark
+}
+.btn-third {
+  @apply bg-third p-2 rounded-md text-white text-center m-2 transition-colors hover:bg-alert
+}
+.btn-fourth {
+  @apply bg-fourth p-2 rounded-md text-white text-center m-2 transition-colors hover:bg-success
+}
 .App {
   text-align: center;
 }
