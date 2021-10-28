@@ -8,6 +8,7 @@ import Item from './Item';
 
 export default function EditPlanner() {
     const [cols, setCols] = useState(defaultItens);
+    const [currentId, setCurrentId] = useState(3);
 
     function splitH(index) {
         const val = [...cols];
@@ -15,25 +16,39 @@ export default function EditPlanner() {
         const secondPart = val.slice(index + 1, val.length);
         const newVal = [...firstPart,
         {
-            id: (val.length + 1).toString(),
+            id: (currentId).toString(),
             type: 'col',
             content: []
         }, ...secondPart];
-
+        setCurrentId(currentId + 1)
         setCols(newVal)
     }
 
     function splitV(index) {
-        const val = [...cols];
-        const firstPart = val.slice(0, index + 1);
-        const secondPart = val.slice(index + 1, val.length);
-        const newVal = [...firstPart,
-        {
-            id: (val.length + 1).toString(),
-            type: 'col',
-            content: []
-        }, ...secondPart];
+        let val = { ...cols[index] };
+        if (val.type === 'col') {
+            val.content.push(
+                {
+                    type: 'row',
+                    content: [
+                        {
+                            id: `${val.id}-0`,
+                            type: 'col',
+                            content: []
+                        },
+                        {
+                            id: `${val.id}-1`,
+                            type: 'col',
+                            content: []
+                        }
+                    ]
+                }
+            )
+        }
 
+        let newVal = [...cols];
+        newVal[index] = val;
+        console.log(newVal)
         setCols(newVal)
     }
 
@@ -70,16 +85,18 @@ export default function EditPlanner() {
 
     return (
         <div>
-            <div className='m-10 h-full flex justify-content items-center'>
+            <div className='m-10 flex justify-content items-center' style={{ height: 'calc(100vh - 164px)' }}>
                 {cols.map((item, index) => (
                     <Item
                         key={index}
                         index={index}
+                        count={1}
                         item={item}
                         previus={previus}
                         next={next}
                         deleteCol={deleteCol}
                         splitH={splitH}
+                        splitV={splitV}
                     />
                 ))}
             </div>
@@ -89,17 +106,17 @@ export default function EditPlanner() {
 
 const defaultItens = [
     {
+        id: '0',
+        type: 'col',
+        content: []
+    },
+    {
         id: '1',
         type: 'col',
         content: []
     },
     {
         id: '2',
-        type: 'col',
-        content: []
-    },
-    {
-        id: '3',
         type: 'col',
         content: []
     }
