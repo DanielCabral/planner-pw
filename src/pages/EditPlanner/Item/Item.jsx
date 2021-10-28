@@ -10,14 +10,14 @@ import PropTypes from 'prop-types';
 
 const Item = ({ index, count, item, previus, next, deleteCol, splitH, splitV }) => {
     const userNavigation = [{ name: 'Calendario', href: '#' }, { name: 'Cheklist', href: '#' }];
-    if (item.type == 'col' && item.content.length === 0)
+    if (item.type == 'col' && item.content.length == 0)
         return (
-            <div className='bg-new-planner border-4 border-dotted border-secondary' style={{ height: `${100 / count}%`, width: `100%` }}>
+            <div className='bg-new-planner border-4 border-dotted border-secondary' style={{ height: `100%`, width: `100%` }}>
                 <div className='ml-2 mt-2 flex flex-row'>
-                    <button cursor='pointer' className='' onClick={() => splitH(index)}>
+                    <button cursor='pointer' className='' onClick={() => splitH(item.id)}>
                         <VscSplitHorizontal className='p-1 text-secondary border border-secondary text-3xl rounded' />
                     </button>
-                    <button cursor='pointer' className='' onClick={() => splitV(index)}>
+                    <button cursor='pointer' className='' onClick={() => splitV(item.id)}>
                         <VscSplitVertical className='ml-1 p-1 text-secondary border border-secondary text-3xl rounded' />
                     </button>
                     <button cursor='pointer' className='' onMouseDown={() => previus(index)}>
@@ -68,11 +68,12 @@ const Item = ({ index, count, item, previus, next, deleteCol, splitH, splitV }) 
         );
     else if (item.type === 'col' && item.content.length != 0) {
         return (
-            <>
+            <div style={{ width: '100%', height: '100%' }}>
                 {item.content.map((element, index) => (
                     <Item
                         key={index}
                         index={index}
+                        count={element.content.length}
                         item={element}
                         previus={previus}
                         next={next}
@@ -81,12 +82,12 @@ const Item = ({ index, count, item, previus, next, deleteCol, splitH, splitV }) 
                         splitV={splitV}
                     />
                 ))}
-            </>
+            </div>
         );
     }
     else if (item.type === 'row') {
         return (
-            <div style={{ height: `100%`, width: `100%` }}>
+            <div className='flex' style={{ height: `${100 / item.parent.content.length}%` }} >
                 {item.content.map((element, index) => (
                     <Item
                         key={index}

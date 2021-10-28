@@ -8,48 +8,127 @@ import Item from './Item';
 
 export default function EditPlanner() {
     const [cols, setCols] = useState(defaultItens);
-    const [currentId, setCurrentId] = useState(3);
+    function getItem(arr, id) {
+        let find = arr.content.find(el => el.id == id);
+        if (find !== undefined) {
+            return find;
+        }
+        else {
 
-    function splitH(index) {
-        const val = [...cols];
-        const firstPart = val.slice(0, index + 1);
-        const secondPart = val.slice(index + 1, val.length);
-        const newVal = [...firstPart,
-        {
-            id: (currentId).toString(),
-            type: 'col',
-            content: []
-        }, ...secondPart];
-        setCurrentId(currentId + 1)
-        setCols(newVal)
+            for (let index = 0; index < arr.content.length; index++) {
+                let element = getItem(arr.content[index], id);
+                if (element != undefined)
+                    return element;
+            }
+            return undefined;
+        }
     }
 
-    function splitV(index) {
-        let val = { ...cols[index] };
-        if (val.type === 'col') {
-            val.content.push(
-                {
-                    type: 'row',
-                    content: [
-                        {
-                            id: `${val.id}-0`,
-                            type: 'col',
-                            content: []
-                        },
-                        {
-                            id: `${val.id}-1`,
-                            type: 'col',
-                            content: []
-                        }
-                    ]
-                }
-            )
-        }
+    function splitH(id) {
+        let newCols = { ...cols }
+        let val = getItem(newCols, id);
+        console.log('val', val);
 
-        let newVal = [...cols];
-        newVal[index] = val;
-        console.log(newVal)
-        setCols(newVal)
+        let focusCols = val.parent == 'root'
+            ? newCols
+            : val.parent;
+
+        const index = focusCols.content.indexOf(val);
+        console.log('index', index)
+        const firstPart = focusCols.content.slice(0, index + 1);
+        console.log('firstPart', firstPart)
+        const secondPart = focusCols.content.slice(index + 1, focusCols.content.length);
+
+        const newItem = {
+            id: `${focusCols.id}-${focusCols.nextId}`,
+            type: 'col',
+            content: [],
+            parent: val.parent,
+            nextId: 0
+        }
+        focusCols.content = [...firstPart, newItem, ...secondPart];
+        focusCols.nextId += 1;
+        console.log('newCols', newCols)
+        setCols(newCols);
+    }
+
+    function splitV(id) {
+        console.log('id', id)
+        let newCols = { ...cols }
+        let val = getItem(newCols, id);
+        console.log('val', val);
+        if (val.type === 'col') {
+            if (val.parent.type && val.parent.type == 'row') {
+                const index = val.parent.parent.content.indexOf(val.parent);
+                console.log('index', index)
+                const firstPart = val.parent.parent.content.slice(0, index + 1);
+                // console.log('firstPart', firstPart)
+                const secondPart = val.parent.parent.content.slice(index + 1, val.parent.parent.content.length);
+                // console.log('secondPart', secondPart)
+
+                let newRow = {
+                    id: `${val.parent.parent.id}-${val.parent.parent.nextId}`,
+                    type: 'row',
+                    content: [],
+                    parent: val.parent.parent,
+                    nextId: 1
+                }
+                newRow.content = [
+                    {
+                        id: `${newRow.id}-0`,
+                        type: 'col',
+                        content: [],
+                        parent: newRow,
+                        nextId: 0
+                    }
+                ]
+                val.parent.parent.nextId += 1;
+                val.parent.parent.content =
+                    [...firstPart,
+                        newRow, ...secondPart]
+            }
+            else {
+                let newRow1 = {
+                    id: `${val.id}-${val.nextId}`,
+                    type: 'row',
+                    content: [],
+                    parent: val,
+                    nextId: 1
+                }
+                newRow1.content = [
+                    {
+                        id: `${newRow1.id}-0`,
+                        type: 'col',
+                        content: [],
+                        parent: newRow1,
+                        nextId: 0
+                    }
+                ]
+                val.nextId += 1;
+                val.content.push(newRow1);
+
+                let newRow2 = {
+                    id: `${val.id}-${val.nextId}`,
+                    type: 'row',
+                    content: [],
+                    parent: val,
+                    nextId: 1
+                }
+                newRow2.content = [
+                    {
+                        id: `${newRow2.id}-0`,
+                        type: 'col',
+                        content: [],
+                        parent: newRow2,
+                        nextId: 0
+                    }
+                ]
+                val.nextId += 1;
+                val.content.push(newRow2);
+            }
+        }
+        console.log('splitV', newCols)
+        setCols(newCols)
     }
 
     function deleteCol(index) {
@@ -86,7 +165,7 @@ export default function EditPlanner() {
     return (
         <div>
             <div className='m-10 flex justify-content items-center' style={{ height: 'calc(100vh - 164px)' }}>
-                {cols.map((item, index) => (
+                {cols.content.map((item, index) => (
                     <Item
                         key={index}
                         index={index}
@@ -104,20 +183,31 @@ export default function EditPlanner() {
     );
 }
 
-const defaultItens = [
-    {
-        id: '0',
-        type: 'col',
-        content: []
-    },
-    {
-        id: '1',
-        type: 'col',
-        content: []
-    },
-    {
-        id: '2',
-        type: 'col',
-        content: []
-    }
-]
+const defaultItens = {
+    id: '0',
+    type: 'row',
+    content: [
+        {
+            id: '0-0',
+            type: 'col',
+            content: [],
+            parent: 'root',
+            nextId: 0
+        },
+        {
+            id: '0-1',
+            type: 'col',
+            content: [],
+            parent: 'root',
+            nextId: 0
+        },
+        {
+            id: '0-2',
+            type: 'col',
+            content: [],
+            parent: 'root',
+            nextId: 0
+        }
+    ],
+    nextId: 3
+}
