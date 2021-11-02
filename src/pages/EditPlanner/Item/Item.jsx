@@ -20,13 +20,13 @@ const Item = ({ index, count, item, previus, next, deleteCol, splitH, splitV }) 
                     <button cursor='pointer' className='' onClick={() => splitV(item.id)}>
                         <VscSplitVertical className='ml-1 p-1 text-secondary border border-secondary text-3xl rounded' />
                     </button>
-                    <button cursor='pointer' className='' onMouseDown={() => previus(index)}>
+                    <button cursor='pointer' className='' onMouseDown={() => previus(item.id)}>
                         <FiChevronLeft className='ml-1 p-1 text-secondary border border-secondary text-3xl rounded' />
                     </button>
-                    <button cursor='pointer' className='' onMouseDown={() => next(index)}>
+                    <button cursor='pointer' className='' onMouseDown={() => next(item.id)}>
                         <FiChevronRight className='ml-1 p-1 text-secondary border border-secondary text-3xl rounded' />
                     </button>
-                    <button cursor='pointer' className='' onMouseDown={() => deleteCol(index)}>
+                    <button cursor='pointer' className='' onMouseDown={() => deleteCol(item.id)}>
                         <MdDelete className='ml-1 p-1 text-secondary border border-secondary text-3xl rounded' />
                     </button>
                 </div>

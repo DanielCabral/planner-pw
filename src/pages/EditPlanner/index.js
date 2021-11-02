@@ -1,9 +1,4 @@
-import React, { Fragment, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Menu, Transition } from '@headlessui/react';
-import { VscSplitHorizontal, VscSplitVertical } from 'react-icons/vsc'
-import { FiChevronLeft, FiChevronRight, FiPlus } from 'react-icons/fi'
-import { MdDelete } from 'react-icons/md'
+import React, { useState } from 'react';
 import Item from './Item';
 
 export default function EditPlanner() {
@@ -27,16 +22,13 @@ export default function EditPlanner() {
     function splitH(id) {
         let newCols = { ...cols }
         let val = getItem(newCols, id);
-        console.log('val', val);
 
         let focusCols = val.parent == 'root'
             ? newCols
             : val.parent;
 
         const index = focusCols.content.indexOf(val);
-        console.log('index', index)
         const firstPart = focusCols.content.slice(0, index + 1);
-        console.log('firstPart', firstPart)
         const secondPart = focusCols.content.slice(index + 1, focusCols.content.length);
 
         const newItem = {
@@ -48,23 +40,17 @@ export default function EditPlanner() {
         }
         focusCols.content = [...firstPart, newItem, ...secondPart];
         focusCols.nextId += 1;
-        console.log('newCols', newCols)
         setCols(newCols);
     }
 
     function splitV(id) {
-        console.log('id', id)
         let newCols = { ...cols }
         let val = getItem(newCols, id);
-        console.log('val', val);
         if (val.type === 'col') {
             if (val.parent.type && val.parent.type == 'row') {
                 const index = val.parent.parent.content.indexOf(val.parent);
-                console.log('index', index)
                 const firstPart = val.parent.parent.content.slice(0, index + 1);
-                // console.log('firstPart', firstPart)
                 const secondPart = val.parent.parent.content.slice(index + 1, val.parent.parent.content.length);
-                // console.log('secondPart', secondPart)
 
                 let newRow = {
                     id: `${val.parent.parent.id}-${val.parent.parent.nextId}`,
@@ -131,34 +117,44 @@ export default function EditPlanner() {
         setCols(newCols)
     }
 
-    function deleteCol(index) {
-        const val = [...cols];
+    function deleteCol(id) {
+        let newCols = { ...cols }
+        let item = getItem(newCols, id);
+        let parent = item.parent === 'root' ? newCols : item.parent;
+        const val = [...parent.content];
+        const index = parent.content.indexOf(item);
         const firstPart = val.slice(0, index);
         const secondPart = val.slice(index + 1, val.length);
         const newVal = [...firstPart, ...secondPart];
-
-        setCols(newVal)
+        parent.content = newVal;
+        setCols(newCols)
     }
 
-    function addCol() {
-        setCols([...cols, { id: '' + Date.now() }])
-    }
+    function previus(id) {
+        let newCols = { ...cols }
+        let item = getItem(newCols, id);
+        let parent = item.parent === 'root' ? newCols : item.parent;
+        const val = [...parent.content];
+        const index = parent.content.indexOf(item);
 
-    function previus(index) {
         if (index > 0) {
-            const tempCols = cols;
-            tempCols.splice(index - 1, 0, tempCols.splice(index, 1)[0])
-            console.log(tempCols);
-            setCols(JSON.parse(JSON.stringify(tempCols)))
+            val.splice(index - 1, 0, val.splice(index, 1)[0]);
+            parent.content = val;
+            setCols(newCols)
         }
     }
 
-    function next(index) {
-        if (index < cols.length - 1) {
-            const tempCols = cols;
-            tempCols.splice(index, 0, tempCols.splice(index + 1, 1)[0])
-            console.log(tempCols);
-            setCols(JSON.parse(JSON.stringify(tempCols)))
+    function next(id) {
+        let newCols = { ...cols }
+        let item = getItem(newCols, id);
+        let parent = item.parent === 'root' ? newCols : item.parent;
+        const val = [...parent.content];
+        const index = parent.content.indexOf(item);
+
+        if (index < val.length - 1) {
+            val.splice(index, 0, val.splice(index + 1, 1)[0])
+            parent.content = val;
+            setCols(newCols)
         }
     }
 
