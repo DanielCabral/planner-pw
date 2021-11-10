@@ -20,6 +20,7 @@ export default function EditPlanner() {
     }
 
     function splitH(id) {
+        console.log(JSON.stringify({ id: 0, contentJson: JSON.stringify(cols).toString(), isLayout: false }))
         let newCols = { ...cols }
         let val = getItem(newCols, id);
 
