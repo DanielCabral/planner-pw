@@ -1,8 +1,20 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import Item from './Item';
+import ModalCreate from './ModalCreate';
 
+const BASE_URL = 'http://localhost:8080';
 export default function EditPlanner() {
+    const history = useHistory();
     const [cols, setCols] = useState(defaultItens);
+    const [modalOpen, setModalOpen] = useState(false);
+    function openModal() {
+        setModalOpen(true);
+    }
+    function closeModal() {
+        setModalOpen(false);
+    }
     function getItem(arr, id) {
         let find = arr.content.find(el => el.id == id);
         if (find !== undefined) {
@@ -20,7 +32,6 @@ export default function EditPlanner() {
     }
 
     function splitH(id) {
-        console.log(JSON.stringify({ id: 0, contentJson: JSON.stringify(cols).toString(), isLayout: false }))
         let newCols = { ...cols }
         let val = getItem(newCols, id);
 
@@ -159,9 +170,29 @@ export default function EditPlanner() {
         }
     }
 
+    async function savePlanner(name) {
+        const result = { id: 0, name, contentJson: JSON.stringify(cols).toString(), isLayout: false }
+        console.log(result)
+        await axios.post(BASE_URL + '/content', result)
+        history.push('/planners')
+    }
     return (
         <div>
-            <div className='m-10 flex justify-content items-center' style={{ height: 'calc(100vh - 164px)' }}>
+            <div className="bg-gray" style={{ height: '60px', display: 'flex', justifyContent: 'space-between' }}>
+                <div></div>
+                <button cursor='pointer' className='btn-fourth' onClick={openModal}>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" onClick={openModal}>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                    </svg>
+                </button>
+            </div>
+
+            {
+                modalOpen
+                    ? <ModalCreate closeModal={closeModal} savePlanner={savePlanner} />
+                    : <></>
+            }
+            <div className='m-10 flex justify-content items-center' style={{ height: 'calc(100vh - 224px)' }}>
                 {cols.content.map((item, index) => (
                     <Item
                         key={index}

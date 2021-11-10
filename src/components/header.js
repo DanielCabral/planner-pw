@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 
 export default function Header() {
   const history = useHistory()
-  const [path, setPath] = useState('/');
+  const [path, setPath] = useState('/e');
 
   useEffect(() => {
     return history.listen((location) => {

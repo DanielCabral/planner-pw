@@ -1,6 +1,9 @@
 :root{
   --gray: #eeeeee;
 }
+.btn-outlined {
+  @apply border-2 p-2 rounded-md text-center m-2 transition-colors hover:bg-back-dark
+}
 .btn-secondary {
   @apply bg-secondary p-2 rounded-md text-white text-center m-2 transition-colors hover:bg-secondary-dark
 }
