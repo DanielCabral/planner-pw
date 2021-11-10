@@ -7,10 +7,10 @@ const CardPlanner = ({ index, planner }) => {
     return (
         <div className={`w-40 h-40 bg-${colors[index % colors.length]} rounded-xl p-3`}>
             <div className='flex justify-center items-center pt-9'>
-                <p className="text-white font-serif font-bold text-4xl">{planner.type}</p>
+                <p className="text-white font-serif font-bold text-4xl">{planner.name.substring(0, 3)}</p>
             </div>
             <div className="w-full flex justify-between items-center mt-10">
-                <p className="text-white font-light">{planner.title}</p>
+                <p className="text-white font-light">{planner.name}</p>
                 <a href='/planners' className='cursor-pointer'><FiMoreVertical className='text-white text-lg' /></a>
             </div>
         </div>

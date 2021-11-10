@@ -1,29 +1,15 @@
 import { Link } from 'react-router-dom'
 import { FiPlus, FiMoreVertical } from 'react-icons/fi'
 import CardPlanner from './CardPlanner';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 export default function Planners() {
-    const planners = [
-        {
-            id: '1',
-            type: 'Fin',
-            title: 'Rendas',
-        },
-        {
-            id: '2',
-            type: 'Aca',
-            title: 'Unidade I',
-        },
-        {
-            id: '3',
-            type: 'Pro',
-            title: 'Projetos',
-        },
-        {
-            id: '4',
-            type: 'Est',
-            title: 'Metas',
-        }
-    ];
+    const BASE_URL = 'http://localhost:8080'
+    const [planners, setPlanners] = useState([]);
+    useEffect(async () => {
+        const { data } = await axios.get(BASE_URL + '/content');
+        setPlanners(data)
+    }, [])
 
     return (
         <div>
