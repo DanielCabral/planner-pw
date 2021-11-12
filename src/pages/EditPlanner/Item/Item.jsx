@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
-import { NavLink } from 'react-router-dom';
 import { Menu, Transition } from '@headlessui/react';
 import { VscSplitHorizontal, VscSplitVertical } from 'react-icons/vsc'
 import { FiChevronLeft, FiChevronRight, FiPlus } from 'react-icons/fi'
 import { MdDelete } from 'react-icons/md'
 import PropTypes from 'prop-types';
 import Checklist from './Checklist';
+import Text from './Text';
 
 
 
@@ -112,6 +112,13 @@ const Item = ({ count, item, previus, next, deleteCol, splitH, splitV, changeTyp
             <Checklist
                 item={item}
                 changeType={changeType}></Checklist>
+        );
+    }
+    else if (item.type === 'text') {
+        return (
+            <Text
+                item={item}
+                changeType={changeType}></Text>
         );
     }
 }
