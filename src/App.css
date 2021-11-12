@@ -16,6 +16,9 @@
 .btn-fourth {
   @apply bg-fourth p-2 rounded-md text-white text-center m-2 transition-colors hover:bg-success
 }
+.input-text {
+  @apply border-2 rounded-xl border-stroke focus:border-success px-2 outline-none focus:outline-none
+}
 .App {
   text-align: center;
 }

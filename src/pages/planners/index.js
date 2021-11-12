@@ -16,7 +16,7 @@ export default function Planners() {
             <div className='p-20'>
                 <div className='w-full flex flex-col lg:flex-row justify-between items-center'>
                     <p className='font-bold text-2xl'>Seus Planners</p>
-                    <input className="border-2 rounded-xl border-stroke focus:border-success px-6 py-2 outline-none focus:outline-none" placeholder="Buscar"></input>
+                    <input className="input-text py-2" placeholder="Buscar"></input>
                 </div>
                 <div className="place-items-center grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 mt-8">
                     <Link to='new-planner' className='cursor-pointer'>

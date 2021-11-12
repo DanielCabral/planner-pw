@@ -5,11 +5,12 @@ import { VscSplitHorizontal, VscSplitVertical } from 'react-icons/vsc'
 import { FiChevronLeft, FiChevronRight, FiPlus } from 'react-icons/fi'
 import { MdDelete } from 'react-icons/md'
 import PropTypes from 'prop-types';
+import Checklist from './Checklist';
 
 
 
-const Item = ({ index, count, item, previus, next, deleteCol, splitH, splitV }) => {
-    const userNavigation = [{ name: 'Calendario', href: '#' }, { name: 'Cheklist', href: '#' }];
+const Item = ({ count, item, previus, next, deleteCol, splitH, splitV, changeType }) => {
+    const userNavigation = [{ name: 'Texto', func: () => { changeType(item.id, 'text') } }, { name: 'Cheklist', func: () => { changeType(item.id, 'checklist') } }];
     if (item.type == 'col' && item.content.length == 0)
         return (
             <div className='bg-new-planner border-4 border-dotted border-secondary pr' style={{ height: `100%`, width: `100%` }}>
@@ -34,7 +35,6 @@ const Item = ({ index, count, item, previus, next, deleteCol, splitH, splitV }) 
                     <Menu as="div" className="relative flex-shrink-0 ml-5">
                         <div>
                             <Menu.Button className="flex flex-col outline-none focus:outline-none">
-                                <p>{item.id}</p>
                                 <FiPlus className='p-1 text-secondary text-7xl' />
                             </Menu.Button>
                         </div>
@@ -50,13 +50,14 @@ const Item = ({ index, count, item, previus, next, deleteCol, splitH, splitV }) 
                                 {userNavigation.map((item) => (
                                     <Menu.Item key={item.name}>
                                         {({ active }) => (
-                                            <NavLink
-                                                to={item.href}
+                                            <div
+                                                cursor='pointer'
+                                                onClick={item.func}
                                                 className={
                                                     'block py-2 px-4 text-sm text-gray-700'
                                                 }>
                                                 {item.name}
-                                            </NavLink>
+                                            </div>
                                         )}
                                     </Menu.Item>
                                 ))}
@@ -80,6 +81,7 @@ const Item = ({ index, count, item, previus, next, deleteCol, splitH, splitV }) 
                         deleteCol={deleteCol}
                         splitH={splitH}
                         splitV={splitV}
+                        changeType={changeType}
                     />
                 ))}
             </div>
@@ -99,31 +101,30 @@ const Item = ({ index, count, item, previus, next, deleteCol, splitH, splitV }) 
                         deleteCol={deleteCol}
                         splitH={splitH}
                         splitV={splitV}
+                        changeType={changeType}
                     />
                 ))}
             </div>
         );
     }
-    else {
+    else if (item.type === 'checklist') {
         return (
-            <>
-                {item.content.map(element => (
-                    <p>ola3</p>
-                ))}
-            </>
+            <Checklist
+                item={item}
+                changeType={changeType}></Checklist>
         );
     }
 }
 
 Item.prototype = {
-    index: PropTypes.number,
     count: PropTypes.number,
     item: PropTypes.object,
     previus: PropTypes.func,
     next: PropTypes.func,
     deleteCol: PropTypes.func,
     splitH: PropTypes.func,
-    splitV: PropTypes.func
+    splitV: PropTypes.func,
+    changeType: PropTypes.func
 };
 
 export default Item;

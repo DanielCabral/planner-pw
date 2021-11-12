@@ -64,6 +64,13 @@ export default function EditPlanner() {
         setCols(newCols)
     }
 
+    function changeType(id, type) {
+        let newCols = { ...cols }
+        let item = getItem(newCols, id);
+        item.type = type;
+        setCols(newCols)
+    }
+
     function previus(id) {
         let newCols = { ...cols }
         let item = getItem(newCols, id);
@@ -126,6 +133,7 @@ export default function EditPlanner() {
                         deleteCol={deleteCol}
                         splitH={splitH}
                         splitV={splitV}
+                        changeType={changeType}
                     />
                 ))}
             </div>
